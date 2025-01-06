@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Finance Calculator</h1>
+        <button class="btn btn-primary w-100" onclick="showCalculator('si')">Simple Interest</button>
+        <button class="btn btn-success w-100" onclick="showCalculator('ci')">Compound Interest</button>
+        <button class="btn btn-warning w-100" onclick="showCalculator('emi')">EMI</button>
+        <button class="btn btn-info w-100" onclick="showCalculator('roi')">ROI</button>
+        <button class="btn btn-secondary w-100" onclick="showCalculator('basic')">Basic Calculator</button>
+
+        <div id="calculator-container" class="mt-4"></div>
+    </div>
+
+    <script>
+        async function showCalculator(type) {
+            const response = await fetch(`/${type}`);
+            const html = await response.text();
+            document.getElementById('calculator-container').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
